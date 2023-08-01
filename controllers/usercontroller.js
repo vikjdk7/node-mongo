@@ -3,10 +3,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const logger = require('../helper/logger');
+
 logger.level = "info"
 
 const app = express();
 app.use(bodyParser.json());
+
 
 mongoose.connect('mongodb://localhost/test', { useNewUrlParser: true, useUnifiedTopology: true });
 
