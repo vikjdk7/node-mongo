@@ -2,8 +2,8 @@ const College = require("../models/college");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const logger = require('../helper/logger');
-logger.level = "info"
+const logger = require("../helper/logger");
+logger.level = "info";
 
 const app = express();
 app.use(bodyParser.json());
