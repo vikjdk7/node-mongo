@@ -74,3 +74,47 @@ exports.deleteCollege =
         res.status(500).send({ deletedCollege: result });
       });
   });
+
+exports.getCollegeByFilter = (req, res) => {
+  const {} = filter;
+  filter.name = req.query.name.toLowerCase();
+  filter.city = req.query.city.toLowerCase();
+  filter.state = req.query.state.toLowerCase();
+  filter.country = req.query.country.toLowerCase();
+  filter.noOfStudents = req.query.noOfStudents.toLowerCase();
+  filter.courses = req.query.courses.toLowerCase();
+  College.find(filter)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ errormessage: err.message });
+    });
+};
+
+exports.getCollegeBySearch = (req, res) => {
+  const {} = search;
+  if (!req.query.name) {
+    res.status(400).json({ errormessage: "Please enter a name" });
+  }
+  if (!req.query.city) {
+    res.status(400).json({ errormessage: "Please enter a city" });
+  }
+  if (!req.query.state) {
+    res.status(400).json({ errormessage: "Please enter a state" });
+  }
+
+  search.name = req.query.name.toLowerCase();
+  search.city = req.query.city.toLowerCase();
+  search.state = req.query.state.toLowerCase();
+  search.country = req.query.country.toLowerCase();
+  search.noOfStudents = req.query.noOfStudents.toLowerCase();
+  search.courses = req.query.courses.toLowerCase();
+  College.find(search)
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).json({ errormessage: err.message });
+    });
+};
